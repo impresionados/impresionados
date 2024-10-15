@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresionados 3D</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img.hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Impresionados3D</h1>
+    <nav>
+        <button onclick="location.href='about.html'">About</button>
+        <button onclick="location.href='cesta.html'">Cesta</button>
+        <button onclick="location.href='inicio_sesion.html'">Inicio Sesión</button>
+    </nav>
+</header>
+
+<div class="carousel">
+    <img src="imagen1.jpg" alt="Imagen 1" class="active">
+    <img src="imagen2.jpg" alt="Imagen 2" class="hidden">
+    <img src="imagen3.jpg" alt="Imagen 3" class="hidden">
+</div>
+
+<script>
+    const images = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+        images[currentIndex].classList.add('hidden');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.remove('hidden');
+    }
+
+    setInterval(showNextImage, 3000); // Cambia de imagen cada 3 segundos
+
+    images.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            window.location.href = img.alt.toLowerCase().replace(/\s/g, '_') + '.html';
+        });
+    });
+</script>
+
+</body>
+</html>
